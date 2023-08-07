@@ -1,0 +1,2179 @@
+ <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Unified Launcher - Global v2.8</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:wght@300&display=swap');
+			
+			body {
+				font-family: Roboto, sans-serif;
+			}
+			
+			.container {
+				justify-content: center;
+				align-items: center;
+				height: 100%;
+			}
+			
+			h3 {
+				font-family: Lato, sans-serif;
+			}
+			
+			/*-------------------------------------- First-level rows */
+			
+			
+			
+			/*-------------------------------------- text DIVs */
+			
+			.options {
+				text-align: center;
+			}
+			
+			.textareadiv {
+				display:flex;
+				justify-content: center;
+				align-items: center;
+			}			
+			
+			/*-------------------------------------- options DIVs */
+			
+			.options {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				font-size: 1.5rem;
+				border-left: 1px solid blue;
+			}
+			
+			.options > div {
+				display: flex;
+				align-items: center;
+				
+			}
+			
+			.options * {
+				margin: 5px auto;
+			}
+			
+			.right-al-label{
+				text-align: right;
+			}
+			
+			.row div:nth-child(2){
+				text-align: left;
+			}
+			
+			.button-alignment {
+				text-align: center;
+			}
+			
+			/*-------------------------------------- textareas */
+			textarea.border.form-control {
+				width: 85%;
+				min-height: 200px;
+			}
+			
+			/*------------------------------------- NN */
+			
+			.languages {
+				display: flex;
+				justify-content: space-around;
+				flex-direction: column;
+				color: white;
+			}
+			
+			.languages label:hover,  .languages input:hover{
+				text-shadow: 1px 1px 40px blue;
+			}
+			
+			/*---------------------------------END NN */
+			
+
+			@media (max-width: 768px) { 
+				.options {
+					border-left: 0;
+				}
+				.languages {
+					flex-direction: row;
+				}
+				
+				#buttonsSpSc {
+					display: flex;
+					justify-content: center;
+					flex-direction: column;
+					text-align: center;
+				}
+
+				#buttonsSpSc li {
+					margin: 1rem auto;
+				}
+				
+				#langPrefs {
+					align-items: center;
+				}
+				
+				#langPrefs p {
+					margin: auto 0.5rem;
+				}
+			}
+			table, th, td, tr {
+			border: 1px solid black;
+			border-collapse: collapse;
+			text-align: center;
+			}
+		</style>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<ul class="nav nav-tabs justify-content-center border border-bottom">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">
+					Tools
+				</a>
+			</li>
+			<!-- --------------------- Negative News --------------------- -->
+			<li class="nav-item">
+				<a class="nav-link" href="#nn_row" id="nn" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="#nn_row">
+					Negative News
+				</a>
+			</li>
+			<!-- --------------------- END OF NN FEATURE ----------------- -->
+			<li class="nav-item">
+				<button class="nav-link collapsed" type="button" data-bs-target=".multi-collapse" data-bs-toggle="collapse" aria-expanded="false" aria-controls="multi-coll-acsuk-uni asin_row">
+					Other Tools
+				</button>
+			</li>
+			<li class="nav-item">
+				<!-- Button trigger modal -->
+				<button class="nav-link" type="button" data-bs-target="#modalPop" data-bs-toggle="modal">
+					How To
+				</button>
+			</li>
+		</ul>
+		<div class="container mt-4">
+			<div class="row mb-2">
+				<div class="col-12 d-flex justify-content-center">
+					<h4>Select the region</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center">
+					<form id="region-form">
+						<input type="radio" class="btn-check mx-2" name="region-option" id="na-radio" value="na" autocomplete="off">
+						<label class="btn btn-outline-success" for="na-radio">NA</label>
+						<input type="radio" class="btn-check mx-2" name="region-option" id="eu-radio" value="eu" autocomplete="off" checked>
+						<label class="btn btn-outline-success" for="eu-radio">EU</label>
+						<input type="radio" class="btn-check mx-2" name="region-option" id="fe-radio" value="fe" autocomplete="off">
+						<label class="btn btn-outline-success" for="fe-radio">FE</label>
+						<input type="radio" class="btn-check mx-2" name="region-option" id="cn-radio" value="cn" autocomplete="off">
+						<label class="btn btn-outline-success" for="cn-radio">CN</label>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="text-success">
+			<hr>
+		</div>
+		<div class="container">
+			
+			<!-- --------------------- Negative News --------------------- -->
+			<div class="row bg-info bg-gradient collapse pt-2 my-1 rounded-3 shadow" style="--bs-bg-opacity: .7;" id="nn_row">
+
+			 <div class="tlddiv">
+				<div class="row mb-2">
+					<div class="col-12 d-flex justify-content-center">
+						<h5>Select the TLD</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 d-flex justify-content-center">
+						<form id="tld-form">
+							<input type="radio" class="btn-check mx-2" name="tld-option" id="com-radio" value="com" autocomplete="off">
+							<label class="btn btn-outline-dark" for="com-radio">.COM</label>
+							<input type="radio" class="btn-check mx-2" name="tld-option" id="combr-radio" value="com.br" autocomplete="off" >
+							<label class="btn btn-outline-dark" for="combr-radio">.COM.BR</label>
+							<input type="radio" class="btn-check mx-2" name="tld-option" id="ie-radio" value="ie" autocomplete="off" checked>
+							<label class="btn btn-outline-dark" for="ie-radio">.IE</label>
+							<input type="radio" class="btn-check mx-2" name="tld-option" id="comhk-radio" value="com.hk" autocomplete="off">
+							<label class="btn btn-outline-dark" for="comhk-radio">.COM.HK</label>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+				<div id="langPrefs" class="col-sm-12 col-md-1 languages">
+					<p class="lead my-1">Template language</p>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="EN" id="en" checked>
+						<label class="form-check-label" for="en">
+						EN
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="FR" id="fr">
+						<label class="form-check-label" for="fr">
+						FR
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="DE" id="de">
+						<label class="form-check-label" for="de">
+						DE
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="ES" id="es">
+						<label class="form-check-label" for="es">
+						ES
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="PL" id="pl">
+						<label class="form-check-label" for="pl">
+						PL
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="IT" id="it">
+						<label class="form-check-label" for="it">
+						IT
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="SE" id="se">
+						<label class="form-check-label" for="se">
+						SE
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="NL" id="nl">
+						<label class="form-check-label" for="nl">
+						NL
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input p-1" name="options" type="checkbox" value="PT" id="pt">
+						<label class="form-check-label" for="pt">
+						PT
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-11 my-1 p-3">
+					<form id="sus_form">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="nn_su">List of NPs</span>
+							<textarea type="text" name="sus_names" class="form-control" placeholder="Name Midname(s) Surname&#10;Name Midname(s) Surname" aria-label="sus_names" aria-describedby="nn_su"></textarea>
+							<button class="btn btn-outline-dark txtaFields" type="button" id="search_sus">Basic Search</button>
+							<button class="btn btn-outline-dark txtbFields" type="button" id="search_susa">Translated Search</button>
+						</div>
+					</form>
+					<form id="fi_form">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="nn_fi">List of LPs</span>
+							<textarea type="text" name="fi_names" class="form-control" placeholder="Biz name&#10;Biz name" aria-label="fi_names" aria-describedby="nn_fi"></textarea>
+							<button class="btn btn-outline-dark txtaFields" type="button" id="search_fi">Basic Search</button>
+							<button class="btn btn-outline-dark txtbFields" type="button" id="search_fia">Translated Search</button>
+						</div>
+					</form>	
+					
+					
+					<div class="row">
+								<div class="col-6 right-al-label">Autodetect language translation:</div>
+								<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="langdetect" name="options" value="langdetect">
+								<label class="form-check-label" for="langdetect"></label>
+								</div>
+								</div>
+								
+								
+					<ul id="buttonsSpSc" class="nav justify-content-center mb-2">
+						<li class="nav-item mx-3">
+							<button class="btn btn-lg btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#multiSurname" aria-expanded="false" aria-controls="multiSurname">Multiple Surnames</button>
+						</li>
+						<li class="nav-item mx-3">
+							<button class="btn btn-lg  btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#cnSwap" aria-expanded="false" aria-controls="cnSwap">CN search</button>
+						</li>
+						<li class="nav-item mx-3">
+							<button class="btn btn-lg btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#esApellidos" aria-expanded="false" aria-controls="esApellidos">ES Apellidos</button>
+						</li>
+						<li class="nav-item mx-3">
+							<button class="btn btn-lg btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#ptSobrenomes" aria-expanded="false" aria-controls="ptSobrenomes">PT Sobrenomes</button>
+						</li>
+					</ul>
+					
+					
+						<!-- <div class="row">
+									<div class="col-6 right-al-label">Autodetect language translation:</div>
+									<div class="col-6 form-check form-switch">
+									<input class="form-check-input" role="switch" type="checkbox" id="langdetect" name="options" value="langdetect">
+									<label class="form-check-label" for="langdetect"></label>
+									</div>
+									</div>
+					 -->
+					<form id="specialSc">
+						<div id="multiSurname" class="input-group mb-3 collapse">
+							<span class="input-group-text" id="multiple_surnames">Multiple surnames</span>
+							<input type="text" name="name" class="form-control" placeholder="Name" aria-label="poc_name" aria-describedby="multiple_surnames">
+							<input type="text" name="midname" class="form-control" placeholder="Middle-names" aria-label="poc_midname" aria-describedby="multiple_surnames">
+							<input type="text" name="surname" class="form-control" placeholder="Surname(s)" aria-label="poc_surname" aria-describedby="multiple_surnames">
+							<button class="btn btn-outline-dark textFields" type="button" id="search_multiple_surnames">Basic Search</button>
+							<button class="btn btn-outline-dark textFields_t" type="button" id="search_multiple_surnames_t">Translated Search</button>
+						</div>
+					</form>
+					<form id="specialScCN">
+						<div id="cnSwap" class="input-group mb-3 collapse">
+							<span class="input-group-text" id="CN_swap">CN Name</span>
+						<!--	<textarea type="text" name="surname" class="form-control" placeholder="Surname&#10;Surname" aria-label="poc_surname" aria-describedby="CN_swap"></textarea>
+							<textarea type="text" name="name" class="form-control" placeholder="Name &#10;Name" aria-label="poc_name" aria-describedby="CN_swap"></textarea>  -->
+
+							<input type="text" name="surname" class="form-control" placeholder="Surname" aria-label="poc_surname" aria-describedby="CN_swap">
+							<input type="text" name="name" class="form-control" placeholder="Name" aria-label="poc_name" aria-describedby="CN_swap">
+							<button class="btn btn-outline-dark cn-search" type="button" id="search_CN_swap">Basic Search</button>
+							<button class="btn btn-outline-dark cn-search_t" type="button" id="search_CN_swap_t">Translated Search</button>
+						</div>
+					</form>
+					<form id="specialScES">
+						<div id="esApellidos" class="input-group mb-3 collapse">
+							<span class="input-group-text" id="ES_apellidos">ES Apellidos</span>
+							<input type="text" name="name" class="form-control" placeholder="Name(s)" aria-label="poc_name" aria-describedby="ES_apellidos">
+						<!--	<input type="text" name="midname" class="form-control" placeholder="Middle-names" aria-label="poc_midname" aria-describedby="ES_apellidos"> -->
+							<input type="text" name="surname1" class="form-control" placeholder="1st Apellido" aria-label="poc_surname" aria-describedby="ES_apellidos">
+							<input type="text" name="surname2" class="form-control" placeholder="2nd Apellido" aria-label="poc_surname" aria-describedby="ES_apellidos">
+							<button class="btn btn-outline-dark es-search" type="button" id="search_ES_apellidos">Basic Search</button>
+							<button class="btn btn-outline-dark es-search_t" type="button" id="search_ES_apellidos_t">Translated Search</button>
+						</div>
+					</form>
+					<form id="specialScPT">
+						<div id="ptSobrenomes" class="input-group mb-3 collapse">
+							<span class="input-group-text" id="PT_sobrenomes">PT Sobrenomes</span>
+							<input type="text" name="name" class="form-control" placeholder="Name(s)" aria-label="poc_name" aria-describedby="PT_sobrenomes">
+						<!--	<input type="text" name="midname" class="form-control" placeholder="Middle-names" aria-label="poc_midname" aria-describedby="PT_sobrenomes"> -->
+							<input type="text" name="ptsurname1" class="form-control" placeholder="1st Sobrenome" aria-label="poc_surname" aria-describedby="PT_sobrenomes">
+							<input type="text" name="ptsurname2" class="form-control" placeholder="2nd Sobrenome" aria-label="poc_surname" aria-describedby="PT_sobrenomes">
+							<button class="btn btn-outline-dark pt-search" type="button" id="search_PT_sobrenomes">Basic Search</button>
+							<button class="btn btn-outline-dark pt-search_t" type="button" id="search_PT_sobrenomes_t">Translated Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- --------------------- END OF NN FEATURE ----------------- -->
+			<form id="oid_cid_form">
+				<div class="row" id="oid">
+					<div class="col-sm-12 col-md-6 my-1 p-2 textareadiv">
+						<textarea class="border border-primary form-control" id="order_ta" name="order_ta" placeholder="Enter Order IDs following the format below:&#10;303-3003003-3003003&#10;101-1001001-1001001&#10;202-2002002-2002002"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6 options my-1 p-2">
+						<h3>OID Options</h3>
+						<div class="row">
+							<div class="col-6 right-al-label">Nautilus</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" name="options" type="checkbox" id="triton_oid" value="triton_oid" checked>
+								<label class="form-check-label" for="triton_oid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Paragon</div>
+							<div class="col-6 form-check form-switch">
+							  <input class="form-check-input" role="switch" name="options" type="checkbox" id="paragon_oid" value="paragon_oid">
+							  <label class="form-check-label" for="paragon_oid"></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row border-bottom border-top" id="cid">
+					<div class="col-sm-12 col-md-6 my-1 p-2 textareadiv">
+						<textarea class="border border-primary form-control" id="customer_ta" name="customer_ta" placeholder="Enter Buyer IDs following the format below:&#10;111122223333&#10;AQD98U34T2&#10;55599966444"></textarea>
+					</div>
+					<div  class="col-sm-12 col-md-6 options my-1 p-2">
+						<h3>CID Options</h3>
+						<div class="row">
+							<div class="col-6 right-al-label">Nautilus</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" name="options" type="checkbox" id="triton_cid" value="triton_cid">
+								<label class="form-check-label" for="triton_cid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">RCCS</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" name="options" type="checkbox" id="rccs_cid" value="rccs_cid">
+								<label class="form-check-label" for="rccs_cid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 button-alignment">
+								<input class="btn btn-primary" id="submit_order_customer" value="Retrieve Data" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="region" value="eu">
+			</form>
+			<form id="sid_form">
+				<div class="row bg-light" id="sid">
+					<div class="col-sm-12 col-md-6 my-1 p-2 textareadiv">
+						<textarea class="border border-primary form-control" id="seller_ta" name="seller_ta" placeholder="Enter Seller IDs following the format below:&#10;111122223333&#10;AQD98U34T2&#10;55599966444"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6 options my-1 p-2">
+						
+						<div>
+							<h3 class="d-block container text-end">
+								SID Options
+							</h3>
+							<select class="form-select d-inline" aria-label="Marketplace ID" name="entity" id="entity">
+								<option selected value="no_choice" disabled>Select entity</option>
+								<optgroup label="Entities">
+									<option value="A1F83G8C2ARO7P">APUK</option>
+									<option value="ATVPDKIKX0DER">API</option>
+									<option value="ape">APE (EU MPs)</option>
+									<option value="A1F83G8C2ARO7P">ACSUK</option>
+									<option value="A19VAU5U5O7RUS">AAPH</option>
+									<option value="A21TJRUUN4KGV">APIPL</option>
+								</optgroup>
+								<optgroup label="EU">
+									<option value="A1PA6795UKMFR9">Germany</option>
+									<option value="A13V1IB3VIYZZH">France</option>
+									<option value="APJ6JRA9NG5V4">Italy</option>
+									<option value="A1RKKUPIHCS9HS">Spain</option>
+									<option value="A1805IZSGTT6HS">Netherlands</option>
+									<option value="A1C3SOZRARQ6R3">Poland</option>
+									<option value="A2NODRKZP88ZB9">Sweden</option>
+									<option value="AMEN7PMS3EDWL">Belgium</option>								
+								</optgroup>
+								<optgroup label="South America">
+									<option value="A2Q3Y263D00KWC">Brazil</option>
+									<option value="A1AM78C64UM0Y8">Mexico</option>
+									<option value="A1ZXRLSQW2V54D">Colombia</option>
+									<option value="A2WDZJZ5TCRMLH">Chile</option>
+								</optgroup>
+								<optgroup label="North America">
+									<option value="ATVPDKIKX0DER">US</option>
+									<option value="A2EUQ1WTGCTBG2">Canada</option>
+								</optgroup>
+								<optgroup label="Africa">
+									<option value="ARBP9OOSHTCHU">Egypt</option>
+									<option value="AE08WJ6YKNBMC">South Africa</option>
+									<option value="A3OCL2LJ6GDH9T">Nigeria</option>
+								</optgroup>
+								<optgroup label="Asia">
+									<option value="A21TJRUUN4KGV">India</option>
+									<option value="A1VC38T7YXB528">Japan</option>
+									<option value="AAHKV2X7AFYLW">China</option>
+									<option value="A19VAU5U5O7RUS">Singapore</option>
+									<option value="A2VIGQ35RCS4UG">UAE</option>
+									<option value="A17E79C6D8DWNP">Saudi Arabia</option>
+									<option value="A33AVAJ2PDY3EV">Turkey</option>
+								</optgroup>
+								<optgroup label="Australia">
+									<option value="A39IBJ37TRP1C6">Australia</option>
+								</optgroup>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Nautilus CID</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="triton_sid" name="options" value="triton_sid">
+								<label class="form-check-label" for="triton_sid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Compliance CID</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="kyc_sid" name="options" value="kyc_sid">
+								<label class="form-check-label" for="kyc_sid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Paragon SID</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="paragon_sid" name="options" value="paragon_sid" checked>
+								<label class="form-check-label" for="paragon_sid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Camshaft</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="cameu_sid" name="options" value="cameu_sid">
+								<label class="form-check-label" for="cameu_sid"></label>
+							</div>
+						</div>
+						<div class="row collapse multi-collapse" id="multi-coll-acsuk-uni">
+							<div class="col-6 right-al-label">Unicorn</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="uni_sid" name="options" value="uni_sid">
+								<label class="form-check-label" for="uni_sid"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 button-alignment">
+								<input class="btn btn-primary" id="submit_seller" value="Seller Info"/>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<input type="hidden" name="region" value="eu">
+			</form>
+			<form id="asin_form">
+				<div class="row bg-light collapse multi-collapse border-bottom border-top" id="asin_row">
+					<div class="col-sm-12 col-md-6 my-1 p-2 textareadiv">
+						<textarea class="border border-primary form-control" id="asin_ta" name="asin_ta" placeholder="Enter ASINs following the format below:&#10;B08VWK0000&#10;B096YF0000&#10;B09TRR0000"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6 options my-1 p-2">
+						<div>
+							<h3 class="d-block container text-end">CSI Data Viewer</h3>
+							<select class="form-select d-inline" aria-label="Marketplace ID Asin" name="entity" id="entity_asin">
+								<optgroup label="Entities">
+									<option value="3" selected>APUK</option>
+									<option value="1">API</option>
+									<option value="ape">APE (EU MPs)</option>
+									<option value="3">ACSUK</option>
+									<option value="104444012">AAPH</option>
+									<option value="44571">APIPL</option>
+								</optgroup>
+								<optgroup label="EU">
+									<option value="4">Germany</option>
+									<option value="5">France</option>
+									<option value="35691">Italy</option>
+									<option value="44551">Spain</option>
+									<option value="328451">Netherlands</option>
+									<option value="712115121">Poland</option>
+									<option value="704403121">Sweden</option>
+									<option value="679831071">Belgium</option>								
+								</optgroup>
+								<optgroup label="South America">
+									<option value="526970">Brazil</option>
+									<option value="771770">Mexico</option>
+									<option value="1546015300">Colombia</option>
+									<option value="1688277160">Chile</option>
+								</optgroup>
+								<optgroup label="North America">
+									<option value="1">US</option>
+									<option value="7">Canada</option>
+								</optgroup>
+								<optgroup label="Africa">
+									<option value="623225021">Egypt</option>
+									<option value="680844071">South Africa</option>
+									<option value="848252881">Nigeria</option>
+								</optgroup>
+								<optgroup label="Asia">
+									<option value="44571">India</option>
+									<option value="6">Japan</option>
+									<option value="3240">China</option>
+									<option value="104444012">Singapore</option>
+									<option value="338801">UAE</option>
+									<option value="338801">Saudi Arabia</option>
+									<option value="338851">Turkey</option>
+								</optgroup>
+								<optgroup label="Australia">
+									<option value="111172">Australia</option>
+								</optgroup>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">Simple data view (ACSUK)</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="asin_csi" name="options" value="simple_product_data_view">
+								<label class="form-check-label" for="asin_csi"></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6 right-al-label">ASIN creator</div>
+							<div class="col-6 form-check form-switch">
+								<input class="form-check-input" role="switch" type="checkbox" id="asin_cre" name="options" value="asin_creator">
+								<label class="form-check-label" for="asin_cre"></label>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="col-12 button-alignment">
+								<input class="btn btn-primary" id="submit_asin" value="ASIN Info" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" name="region" value="eu">
+			</form>
+			
+
+			
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="modalPop" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalPopLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Good to know...</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="accordion" id="accordionGTK">
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingOne">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Preliminary Actions
+								</button>
+							</h2>
+							<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionGTK">
+								<div class="accordion-body">
+									<p><strong>Bookmarking:</strong> Having the tool saved locally and bookmarked in your browser is the best option</p>
+									<p><strong>Authentication:</strong> Before using the tool, remember to authenticate as you normally do every morning (usually via Mozilla Firefox)</p>
+									<p><strong>Tools Authentication:</strong> Before opening pages on Nautilus or Paragon, you need to randomly open these tools first, as midway authentication is also necessary</p>
+									<p><strong>Tools Troubleshooting:</strong> Sometimes, tools won't open, regardless of the aforementioned actions. In this case, deleting browser data (cookies etc) will help. If you are in a hurry, Incognito/Private Mode will also help.</p>
+									<p><strong>Tabs not opening:</strong> If just one tab opens when you trigger the search, make sure to grant pop-up permissions to the launcher (look on the right of the URL bar in your browser, to see if there is any tiny alert). For this reason, saving the launcher locally, in a specific folder, will turn beneficial, as permissions granted may refer to a specific location/path and file. 
+									<a href="https://support.google.com/chrome/answer/95472?hl=en&co=GENIE.Platform%3DDesktop" target="_blank"> Chrome</a>, <a href="https://support.mozilla.org/en-US/kb/pop-blocker-settings-exceptions-troubleshooting" target="_blank">Firefox</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Launchers
+								</button>
+							</h2>
+							<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionGTK">
+								<div class="accordion-body">
+									<p><strong>Orders and Buyers:</strong> Order IDs and buyer IDs will be paired, should the IDs be equal in number inside the textareas. If they are not,
+										tabs will open broken down by tool, not by OID-BID pairing. Use "Retrieve Data" for both Orders and Buyers forms.</p>
+									<p><strong>ACSUK:</strong> ACSUK and other tools will show up once clicked on "Other tools" navigation item at the top</p>
+									<p><strong>Chrome overload:</strong> Before opening tabs, consider a certain limit of IDs in the textareas. In general, do not overlaod
+										the browser by triggering excessive numbers of tabs, say, over 50 tabs. For example, opening 5 Seller IDs by selecting APE entity is a bad idea. 
+										Or 5 names with 5 languages selected in the NN search tool. Use it wisely.</p>
+									<p><strong>Incorrect marketplace opened:</strong> If SUI does not have presence in the selected marketplace, Paragon will open their profile anyway in a random one, regardless of your choice.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingThree">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									Negative News
+								</button>
+							</h2>
+							<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionGTK">
+								<div class="accordion-body">
+									<p><strong>Acronyms:</strong> NP: Natural Person, LP: Legal Person.</p>
+									<p><strong>Search environment:</strong> As advised in the official guide, do not forget to clear browser data before starting your NN search. The NN tool also works
+									in Incognito/Private modes (clean environments). In any case, make sure that you follow all browser-required actions before triggering your searches.</p>
+									<p><strong>List:</strong> You can put all names into a list (either into NPs or LPs forms, not those at the bottom), do not use commas or other punctuation, as this would show up into the actual search query.</p>
+									<p><strong>Combos:</strong> All text fields meant for natural persons will return all combinations of the names. For example, Adam Simon Mark Taylor input ; it will return NN searches a. Adam Taylor; b. Adam Simon Mark Taylor; c. Adam Simon / S Taylor; d. Adam Mark / M Taylor, for each language template. </p>
+									<p>Legal persons will instead return the input as a whole, broken down by language. In this sense, please, if you notice any 'human-like' name, say, among Financial Information, enter it among the natural persons fields.</p>
+									<p><strong>Middle Names:</strong> x1 Forename is expected, no limit for midnames. If you type multiple midnames, these will be searched as outlined above. Multiple or multi-word surnames that should be searched 
+									as a whole - i.e. "de la Silva" - go into the "Multiple Surnames" form.</p>
+									<p><strong>Basic Search:</strong> Clicking the "Basic Search" buttons will launch searches for the entities entered in the text fields including the keywords required for each Language Template selected. The search templates also remove hits from some common social media sites that do not provide useful information, reducing the number of websites required to review.</p>
+									<p><strong>Translated Search:</strong> The “Translated Search” search option uses the Google Translate API to automatically translate the search results from the selected Template Language into English. Alternatively, by turning the “Autodetect language translation” option on and then selecting “Translated Search” allows the Google Translate API to detect what language most of the search results are in and translate them into English. This can be useful if most of the results are not in the same language as the Template Language or in English.</p>
+									<p><strong>Language Specific Name Searches:</strong> For certain languages, advice has been given on what name combinations and orders are required in NN searches.</p>
+									<p>Names of Chinese origin generally follow the order of [surname] [name]. Going to “CN Search” allows ensures that names are in the correct order as well as allowing for surnames and personal names with multiple words/syllables.</p>
+									<p>Spanish and Portuguese names generally have 2 surnames with traditionally one coming from their mother and one coming from their father. The orders for names in each language are shown in the table below:</p>
+									<table style="width:100%">
+										<tr>
+											<th style="width:10%"> </th>
+											<th style="width:22.5%">A</th>
+											<th style="width:22.5%">B</th>
+											<th style="width:22.5%">C</th>
+											<th style="width:22.5%">D</th>
+										</tr>
+										<tr>
+											<td><strong>ES</strong></td>
+											<td>Personal Name</td>
+											<td>Middle Name(s)</td>
+											<td>Father’s Surname</td>
+											<td>Mother’s Surname</td>
+										</tr>
+										<tr>
+											<td><strong>PT</strong></td>
+											<td>Personal Name</td>
+											<td>Middle Name(s)</td>
+											<td>Mother’s Surname</td>
+											<td>Father’s Surname</td>
+										</tr>
+									</table>
+									<p>“PT Sobrenomes” will return searches with the name combinations ABCD, ABD and AD (or ACD and AD if no middle names have been provided).</p>
+									<p>Please note, that for “CN Search”, “ES Apellidos” and “PT Sobrenomes” you still need to selected the Template Language, for example, launching a “PT Sobrenomes” search will not automatically select the PT Language Template.</p>
+									<p><strong>Official guidelines:</strong> The tool is meant to speed up the process, however, for any doubts, refer to the 'Negative News Search Job Aid'. It is your responsibility 
+									to search for all combinations under every expected language.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingFour">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+									Special scenarios
+								</button>
+							</h2>
+							<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionGTK">
+								<div class="accordion-body">
+									<p><strong>Multiple surnames: </strong> It is common to find &quot;multi-word&quot; surnames for one person sometimes, i.e. De Laurentis (IT) and i.e. de Borbón (ES).
+									In this case, you need to use the &quot;<strong style="color: blue;">Multiple Surnames</strong>&quot; form: Put the words inside the surname field and perform the NN search.</p>
+									<p><strong>First Apellido and  Second Apellido:</strong> Always double check what is being searched and ask an ES investigator to 
+									confirm the generated search queries, if in doubt (see also &quot;ES naming conventions&quot; via the official guidance). Expected combos: According to ES investigators&#39; advice, 
+									given the search query (Forename:)A, (midnames:) B C, (surnames:) D E, expected combinations will be A B C D E, A D, B D, C D, A D E, B D E, C D E, A B C D, broken down by language. Trigger 
+									this search via the &quot;<strong style="color: blue;">ES Apellidos</strong>&quot; form.</p>
+									<p><strong>CN Swap:</strong> CN names can return different results depending on the name-surname order. Chinese naming conventions put their 
+									surname first and media may follow the same logic.For this reason, perform the search via the &quot;<strong style="color: blue;">CN search</strong>&quot; form, whenever you need to screen a CN name. 
+									For example, having Tianyang (Forename) Zhao (Surname),	the search trigger will return both the forename-surname order, as well as the surname-forename one. 
+									<strong>Note:</strong> No CN middle names expected, except for cases where non-CN middle names are provided, such as the famous entrepreneur [CN] 马云 - 
+									[Pinyin] Ma (Surname) Yun (Name) - aka Jack Ma (Yun); in this last case, feel free to use the normal search functions of NPs, making sure of the name-midname-surname order. In the event that you notice a 
+									CN middle name, please, check the related ID or reach out to an SME to confirm your search queries. Refer to the official guidance as well.</p>
+									<p><strong>Google Captcha:</strong> After triggering a certain number of searches, Google will make sure that you are not a bot. In this scenario, resolve the captcha,
+									close all tabs just opened, and simply re-trigger the search to avoid entering captchas for each search.</p>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingFive">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+									Disclaimer
+								</button>
+							</h2>
+							<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionGTK">
+								<div class="accordion-body">
+									<p><strong>This is just a launcher, make good use of it. Results of your queries should always be checked for accuracy.</strong></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		  </div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script>
+		function changeRadioButtonState(radioButtonId, checked)
+		 {
+			const radioButton = document.getElementById(radioButtonId);
+			radioButton.checked = checked;
+		}
+		
+		$(document).ready(function(){
+
+			// Creates a unique options array, based on those retrieved by the FormData() constructor
+			// Each form in the launcher needs to gather options selected into one unique array
+			// before data can be processed correctly
+			function processedOptions(form){
+				// This function receives the form media query as parameter
+				
+				// An empty array is prepared to store all options passed via the form media query
+				let optArray = [];
+				// Logic behind the following iteration is "if you find an entry named 'options',
+				// take the value of that entry and push it into the array"
+				for (let entry of form.entries()){
+					if (entry[0] === 'options'){
+						optArray.push(entry[1]);
+					}
+				}
+				// Once the array is created and filled, delete the old multiple entries named "options"
+				form.delete('options');
+				// Once all the entries named "options" are deleted, create a new entry named "options",
+				// and assign the filled array to the form media query.
+				form.append('options', optArray.join());
+				// console.log('Array of options (raw): ', optArray);
+				// Return the form media query showing one single "options" entry, not multiple.
+				return form;
+			}
+			
+			// Attaches the event listener to the button which will retrieve data 
+			document.getElementById('submit_order_customer').addEventListener('click', e => checkInput(e));
+			// Attaches the event listener to the button which will retrieve Seller Info 
+			document.getElementById('submit_seller').addEventListener('click', e => {
+				let entity = document.getElementById('entity');
+				let value_entity = entity.options[entity.selectedIndex].value;
+				
+				// It checks that an entity was actually selected by the user
+				if (value_entity !== 'no_choice'){
+					checkInputSeller(e);
+				} else {
+					alert('You must select an entity to continue');
+				}
+			});
+			// Attaches the event listener to the button which will retrieve ASIN Info
+			document.getElementById('submit_asin').addEventListener('click', e => checkInputASIN(e));
+			
+			// Attaches the event listener to the radio buttons at the top, to change the value attribute of hidden inputs
+			$('#region-form').change(function(){
+				let selectedValue = $("input[name='region-option']:checked").val();
+				$("input[type='hidden']").attr('value', selectedValue);
+
+				var region = document.querySelector('input[name="region-option"]:checked').value;
+				if (region == 'eu')
+				{
+					changeRadioButtonState("ie-radio", true);
+				}
+				else if (region == 'na')
+				{
+					changeRadioButtonState("com-radio", true);
+				}
+				else if (region == 'cn')
+				{
+					changeRadioButtonState("comhk-radio", true);
+				}
+				
+			});
+			
+			/* --------------------- Negative News --------------------- */
+			
+			// Attaching event listeners to nn buttons
+			let textFieldsButtons = document.getElementsByClassName('textFields');
+			for (let textFieldButton of textFieldsButtons){
+				textFieldButton.addEventListener('click', e => searchIndividual(e));
+			}
+			
+			let textFieldsTButtons = document.getElementsByClassName('textFields_t');
+			for (let textFieldButton of textFieldsTButtons){
+				textFieldButton.addEventListener('click', e => searchIndividual(e));
+			}
+		
+			let textareaFieldsButtons = document.getElementsByClassName('txtaFields');
+			for (let textFieldButton of textareaFieldsButtons){
+				textFieldButton.addEventListener('click', e => searchSeriesOfEntities(e));
+			}
+			
+			let textareaFieldsButtons1 = document.getElementsByClassName('txtbFields');
+			for (let textFieldButton of textareaFieldsButtons1){
+				textFieldButton.addEventListener('click', e => searchSeriesOfEntities(e));
+			}
+			
+			let cnSearchButtons = document.getElementsByClassName('cn-search');
+			for (let cnSearchButton of cnSearchButtons){
+				cnSearchButton.addEventListener('click', e => cnSwap(e));
+				// console.log("CN swap triggered");
+			}
+			
+			let esSearchButtons = document.getElementsByClassName('es-search');
+			for (let esSearchButton of esSearchButtons){
+				esSearchButton.addEventListener('click', e => esSurnames(e));
+			}
+			
+			let ptSearchButtons = document.getElementsByClassName('pt-search');
+			for (let ptSearchButton of ptSearchButtons){
+				ptSearchButton.addEventListener('click', e => ptSurnames(e));
+			}
+			
+			
+			let cnSearchTButtons = document.getElementsByClassName('cn-search_t');
+			for (let cnSearchButton of cnSearchTButtons){
+				cnSearchButton.addEventListener('click', e => cnSwap(e));
+				// console.log("CN swap triggered");
+			}
+			
+			let esSearchTButtons = document.getElementsByClassName('es-search_t');
+			for (let esSearchButton of esSearchTButtons){
+				esSearchButton.addEventListener('click', e => esSurnames(e));
+			}
+			
+			let ptSearchTButtons = document.getElementsByClassName('pt-search_t');
+			for (let ptSearchButton of ptSearchTButtons){
+				ptSearchButton.addEventListener('click', e => ptSurnames(e));
+			}
+			
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			/* --------------------- Negative News --------------------- */
+			class NegativeNewsEntity {
+				constructor(name, midname, surname, options_array) {
+					this.name = name;
+					this.midname = midname;
+					this.surname = surname;
+					this.options_array = options_array;
+				}
+				
+				openingInstances() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray)
+							{
+								window.open(openTabsNN(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+
+								//window.open(openTabsNN(option, '', singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+						//	window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+						if(this.midname.length > 0)
+							window.open(openTabsNN(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+						else
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+	
+							if (this.midname !== '') {
+								window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+								//window.open(openTabsNN(option, '', this.midname, this.surname), '_blank');
+							} 
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						for (let option of this.options_array){
+							window.open(openTabsNN(option, this.name, '', ''), '_blank');
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				openingInstancesES() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray)
+							{
+								window.open(openTabsNN(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+
+								//window.open(openTabsNN(option, '', singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+						//	window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+						if(this.midname.length > 0)
+							window.open(openTabsNN(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+						else
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank'); // ABC + ABCD
+							//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+							if (this.name.split(" ")[0] !== this.name) {
+								window.open(openTabsNN(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AC and ACD
+							}
+							if (this.midname !== '') {
+								//window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+								//window.open(openTabsNN(option, '', this.midname, this.surname), '_blank');
+							} 
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						for (let option of this.options_array){
+							window.open(openTabsNN(option, this.name, '', ''), '_blank');
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+				openingInstancesES_t() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, this.midname, this.surname), '_blank');
+								window.open(openTabsNN2(option, this.name, '', this.surname), '_blank');
+							} else {
+								window.open(openTabsNN1(option, this.name, this.midname, this.surname), '_blank');
+								window.open(openTabsNN1(option, this.name, '', this.surname), '_blank');
+							}
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray)
+							{
+								if( document.getElementById("langdetect").checked ){
+									window.open(openTabsNN2(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+								} else {
+									window.open(openTabsNN1(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+								}
+								//window.open(openTabsNN(option, '', singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+						//	window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+							if(this.midname.length > 0) {
+								if( document.getElementById("langdetect").checked ){
+									window.open(openTabsNN2(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+								} else {
+									window.open(openTabsNN1(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+								}
+							} else {
+								if( document.getElementById("langdetect").checked ){
+									window.open(openTabsNN2(option, this.name, '', this.surname), '_blank'); // ABC + ABCD
+									//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+									if (this.name.split(" ")[0] !== this.name) {
+										window.open(openTabsNN2(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AC and ACD
+									}
+								} else {
+									window.open(openTabsNN1(option, this.name, '', this.surname), '_blank'); // ABC + ABCD
+									//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+									if (this.name.split(" ")[0] !== this.name) {
+										window.open(openTabsNN1(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AC and ACD
+									}
+								}
+								if (this.midname !== '') {
+									//window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+									//window.open(openTabsNN(option, '', this.midname, this.surname), '_blank');
+								} 
+							}
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						for (let option of this.options_array){
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, '', ''), '_blank');
+							} else {
+								window.open(openTabsNN1(option, this.name, '', ''), '_blank');
+							}
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+				openingInstancesPT_t() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						// console.log("If clause 1");
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, this.midname, this.surname), '_blank');
+								window.open(openTabsNN2(option, this.name, '', this.surname), '_blank');
+							} else {
+								window.open(openTabsNN1(option, this.name, this.midname, this.surname), '_blank');
+								window.open(openTabsNN1(option, this.name, '', this.surname), '_blank');
+							}
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray)
+							{
+								if( document.getElementById("langdetect").checked ){
+									window.open(openTabsNN2(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+								} else {
+									window.open(openTabsNN1(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+								}
+								//window.open(openTabsNN(option, '', singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// console.log("If clause 2"); // ACD
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+						//	window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+						if(this.midname.length > 0) {
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+							} else {
+								window.open(openTabsNN1(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+							}
+						} else {
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, '', this.surname), '_blank'); // ABD
+								//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+								if (this.name.split(" ")[0] !== this.name) {
+									window.open(openTabsNN2(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AD
+								}
+							} else {
+								window.open(openTabsNN1(option, this.name, '', this.surname), '_blank'); // ABD
+								//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+								if (this.name.split(" ")[0] !== this.name) {
+									window.open(openTabsNN1(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AD
+								}
+							}
+	
+							if (this.midname !== '') {
+								//window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+								//window.open(openTabsNN(option, '', this.midname, this.surname), '_blank');
+							}
+						}
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						// console.log("If clause 3");
+						for (let option of this.options_array){
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.name, '', ''), '_blank');
+							} else {
+								window.open(openTabsNN1(option, this.name, '', ''), '_blank');
+							}
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+				openingInstancesPT() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						// console.log("If clause 1");
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray)
+							{
+								window.open(openTabsNN(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+
+								//window.open(openTabsNN(option, '', singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// console.log("If clause 2"); // ACD
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+						//	window.open(openTabsNN(option, this.name, this.midname, this.surname), '_blank');
+						if(this.midname.length > 0) {
+							window.open(openTabsNN(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+						} else {
+							window.open(openTabsNN(option, this.name, '', this.surname), '_blank'); // ABD
+							//window.open(openTabsNN(option, this.name.split(" ")[1], '', this.surname), '_blank');
+							if (this.name.split(" ")[0] !== this.name) {
+								window.open(openTabsNN(option, this.name.split(" ")[0], '', this.surname), '_blank'); // AD
+							}
+	
+							if (this.midname !== '') {
+								//window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+								//window.open(openTabsNN(option, '', this.midname, this.surname), '_blank');
+							}
+						}
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						// console.log("If clause 3");
+						for (let option of this.options_array){
+							window.open(openTabsNN(option, this.name, '', ''), '_blank');
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+					openingInstances1() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							//console.log("A: Opened search for" + this.name + " " + this.midname + " " + this.surname);
+							window.open(openTabsNN1(option, this.name, this.midname, this.surname), '_blank');
+							//console.log("B: Opened search for" + this.name + " " + this.surname);
+							window.open(openTabsNN1(option, this.name, '', this.surname), '_blank');
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray){
+								console.log("Language: " + option);
+								//window.open(openTabsNN1(option, '', singleMidname, this.surname), '_blank'); // From version 2.6
+								//console.log("C: Opened search for" + this.name + " " + singleMidname + " " + this.surname);
+								if (option === 'en') {
+									window.open(openTabsNN(option, this.name, "(" + singleMidname + " | " + singleMidname.charAt(0) + ")", this.surname), '_blank');
+								} else {
+									window.open(openTabsNN1(option, this.name, singleMidname, this.surname), '_blank');
+								}
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+							console.log("D: Opened search for " + this.name + " " + this.midname + " " + this.surname);
+							if (option === 'en' && this.midname !== '') {
+									window.open(openTabsNN(option, this.name, "(" + this.midname + " | " + this.midname.charAt(0) + ")", this.surname), '_blank');
+								} else {
+									window.open(openTabsNN1(option, this.name, this.midname, this.surname), '_blank');
+								}
+							if (this.midname !== '') {
+								console.log("E: Opened search for " + this.name + " " + this.surname);
+								window.open(openTabsNN1(option, this.name, '', this.surname), '_blank');
+								//window.open(openTabsNN1(option, '', this.midname, this.surname), '_blank'); // From version 2.6
+								// console.log("F: Opened search for" + this.name + " " + this.midname + " " + this.surname);
+								// window.open(openTabsNN1(option, this.name, this.midname, this.surname), '_blank');
+							} 
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						for (let option of this.options_array){
+							window.open(openTabsNN1(option, this.name, '', ''), '_blank');
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+					openingInstances2() {
+					// Next script checks whether the middle name has just 1 or more words
+					if (this.midname.includes(' ') && this.name !== '' && this.surname !== ''){
+						let midnameArray = this.midname.split(' ');
+						for (let option of this.options_array){
+							// This opens the NN search with the comprehensive full name
+							window.open(openTabsNN2(option, this.name, this.midname, this.surname), '_blank');
+							window.open(openTabsNN2(option, this.name, '', this.surname), '_blank');
+							// This loops through the midnameArray and opens the several alternatives
+							for (let singleMidname of midnameArray){
+								window.open(openTabsNN2(option, this.name, singleMidname, this.surname), '_blank');
+							}
+						}
+					} else if (this.name !== '' && this.surname !== ''){
+						// This block processes a midname made up of a single word
+						for (let option of this.options_array){
+							window.open(openTabsNN2(option, this.name, this.midname, this.surname), '_blank');
+							if (this.midname !== '') {
+								window.open(openTabsNN2(option, this.name, '', this.surname), '_blank');
+								// window.open(openTabsNN2(option, '', this.midname, this.surname), '_blank');
+							} 
+						}
+					} else if (this.name !== '' && this.midname === 'fi') {
+						for (let option of this.options_array){
+							window.open(openTabsNN2(option, this.name, '', ''), '_blank');
+						}
+					} else {
+						alert("No input: the individual's name and surname are required fields");
+					}
+				}
+				
+				
+				cn_swap_t() {
+					if (this.name !== '' && this.surname !== ''){
+						for (let option of this.options_array){
+							if( document.getElementById("langdetect").checked ){
+								window.open(openTabsNN2(option, this.surname, '', this.name), '_blank')
+							} else {
+								window.open(openTabsNN1(option, this.surname, '', this.name), '_blank');
+							}
+						}
+					} else {
+						alert("No input: The individual's name and surname are required fields");
+					}
+				}
+				
+				cn_swap() {
+					if (this.name !== '' && this.surname !== ''){
+						for (let option of this.options_array){
+							//window.open(openTabsNN(option, this.name, '', this.surname), '_blank');
+							window.open(openTabsNN(option, this.surname, '', this.name), '_blank');
+						}
+					} else {
+						alert("No input: The individual's name and surname are required fields");
+					}
+				}
+			}
+			
+
+			
+			
+			
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			// Processes tabs parameters via switch
+			function openTabs(option, mainParameter, optionalParameter, region){
+				
+				let tab = '';
+				
+				switch (option) {
+					case 'triton_oid':
+						tab = `https://nautilus-${region}.amazon-corp.com/search/bri-search-customers-by-order-id/${mainParameter}`;
+						break;
+					case 'paragon_oid':
+						tab = `https://paragon-${region}.amazon.com/hz//view-investigation-lookup?lookupType=orderId&encryptedMarketplaceId=ATVPDKIKX0DER&lookupQuery=${mainParameter}`;
+						break;
+					case 'triton_cid':
+						tab = `https://nautilus-${region}.amazon-corp.com/search/bri-search-by-customer-id/${optionalParameter}`;
+						break;
+					case 'rccs_cid':
+						tab = `https://nautilus-${region}.amazon-corp.com/search/sam-search-scope-customer-id/${optionalParameter}`;
+						break;
+					case 'triton_sid':
+						tab = `https://nautilus-${region}.amazon-corp.com/search/bri-search-by-customer-id/${mainParameter}`;
+						break;
+					case 'kyc_sid':
+						tab = `https://nautilus-${region}.amazon-corp.com/search/calypso-search-scope-customer-id/${mainParameter}`;
+						break;
+					case 'paragon_sid':
+						tab = `https://paragon-${region}.amazon.com/hz/view-investigation-lookup?lookupQuery=${mainParameter}&lookupType=sellerCustomerId&encryptedMarketplaceId=${optionalParameter}`;
+						break;
+					case 'cameu_sid':
+						tab = `https://camweb-${region}.amazon.com/accountholder/${mainParameter}`;
+						break;
+					case 'uni_sid':
+						tab = `https://unicorn-dashboard-eu-dub.dub.proxy.amazon.com/viewSeller.htm?merchantCustomerId=${mainParameter}`;
+						break;
+					case 'simple_product_data_view':
+						tab = `https://csi.amazon.com/view?view=${option}&item_id=${mainParameter}&marketplace_id=${optionalParameter}&customer_id=&merchant_id=&sku=&fn_sku=&gcid=&fulfillment_channel_code=&listing_type=purchasable&submission_id=&order_id=&external_id=&search_string=&realm=USAmazon&stage=prod&domain_id=&keyword=&submit=Show`;
+						break;
+					case 'asin_creator':
+						tab = `https://csi.amazon.com/view?view=${option}&item_id=${mainParameter}&marketplace_id=${optionalParameter}&customer_id=&merchant_id=&sku=&fn_sku=&gcid=&fulfillment_channel_code=&listing_type=purchasable&submission_id=&order_id=&external_id=&search_string=&realm=USAmazon&stage=prod&domain_id=&keyword=&submit=Show`;
+						break;
+				}
+				
+				return tab
+			
+			}
+			
+			/* --------------------- Negative News --------------------- */
+			// Processes NN tabs parameters via switch
+			function openTabsNN(lang, name, midname, surname){
+				
+				var tld = document.querySelector('input[name="tld-option"]:checked').value;
+				console.log ("TLD IS:"+tld);
+				let tab = '';
+				// The following 5 social media sites will be excluded from search results: facebook, twitter, instagram, linkedin, reddit
+				let sm_text = '+-site:facebook.*+-site:twitter.*+-site:instagram.*+-site:linkedin.*+-site:reddit.*';
+				switch (lang) {
+					case 'en':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr`;
+						break;
+					case 'fr':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+pot-de-vin+OR+fraude+OR+%22blanchiment%22+OR+crime+OR+terrorisme+OR+corruption` + sm_text + `&%2a&cad=h`
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+pot-de-vin+OR+fraude+OR+%22blanchiment%22+OR+crime+OR+terrorisme+OR+corruption` + sm_text + `&%2a&cad=h`
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+pot-de-vin+OR+fraude+OR+%22blanchiment%22+OR+crime+OR+terrorisme+OR+corruption` + sm_text + `&%2a&cad=h`
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+pot-de-vin+OR+fraude+OR+%22blanchiment%22+OR+crime+OR+terrorisme+OR+corruption` + sm_text + `&%2a&cad=h`;
+						break;
+					//done de
+					case 'de':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+Bestechung+OR+betrug+OR+%22Geldw%C3%A4sche%22+OR+Kriminalit%C3%A4t+OR+Terrorismus+OR+Korruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+Bestechung+OR+betrug+OR+%22Geldw%C3%A4sche%22+OR+Kriminalit%C3%A4t+OR+Terrorismus+OR+Korruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+Bestechung+OR+betrug+OR+%22Geldw%C3%A4sche%22+OR+Kriminalit%C3%A4t+OR+Terrorismus+OR+Korruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+Bestechung+OR+betrug+OR+%22Geldw%C3%A4sche%22+OR+Kriminalit%C3%A4t+OR+Terrorismus+OR+Korruption` + sm_text + `&ie=utf-8&oe=utf-8&gws_rd=cr&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp`;
+						break;
+					case 'es':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+soborno+OR+fraude+OR+%22lavado+de+dinero%22+OR+crimen+OR+terrorismo+OR+corrupci%C3%B3n` + sm_text
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+soborno+OR+fraude+OR+%22lavado+de+dinero%22+OR+crimen+OR+terrorismo+OR+corrupci%C3%B3n` + sm_text
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+soborno+OR+fraude+OR+%22lavado+de+dinero%22+OR+crimen+OR+terrorismo+OR+corrupci%C3%B3n` + sm_text
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+soborno+OR+fraude+OR+%22lavado+de+dinero%22+OR+crimen+OR+terrorismo+OR+corrupci%C3%B3n` + sm_text;
+						break;
+					case 'pl':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+przekupstwo+OR+oszustwo+OR+%22pranie+pieni%C4%99dzy%22+OR+przest%C4%99pstwo+OR+terroryzm+OR+korupcja` + sm_text
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+przekupstwo+OR+oszustwo+OR+%22pranie+pieni%C4%99dzy%22+OR+przest%C4%99pstwo+OR+terroryzm+OR+korupcja` + sm_text
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+przekupstwo+OR+oszustwo+OR+%22pranie+pieni%C4%99dzy%22+OR+przest%C4%99pstwo+OR+terroryzm+OR+korupcja` + sm_text
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+przekupstwo+OR+oszustwo+OR+%22pranie+pieni%C4%99dzy%22+OR+przest%C4%99pstwo+OR+terroryzm+OR+korupcja` + sm_text;
+						break;
+					case 'it':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+corruzione+OR+frode+OR+%22riciclaggio%22+OR+crimine+OR+terrorismo+OR+tangenti` + sm_text+ `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+corruzione+OR+frode+OR+%22riciclaggio%22+OR+crimine+OR+terrorismo+OR+tangenti` + sm_text+ `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+corruzione+OR+frode+OR+%22riciclaggio%22+OR+crimine+OR+terrorismo+OR+tangenti` + sm_text+ `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+corruzione+OR+frode+OR+%22riciclaggio%22+OR+crimine+OR+terrorismo+OR+tangenti` + sm_text+ `&ie=utf-8&oe=utf-8&gws_rd=cr`;
+						break;
+					case 'se':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+bestickning+OR+bedr%C3%A4geri+OR+pengatv%C3%A4tt+OR+brottslighet+OR+terrorism+OR+korruption` + sm_text
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+bestickning+OR+bedr%C3%A4geri+OR+pengatv%C3%A4tt+OR+brottslighet+OR+terrorism+OR+korruption` + sm_text
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bestickning+OR+bedr%C3%A4geri+OR+pengatv%C3%A4tt+OR+brottslighet+OR+terrorism+OR+korruption` + sm_text
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bestickning+OR+bedr%C3%A4geri+OR+pengatv%C3%A4tt+OR+brottslighet+OR+terrorism+OR+korruption` + sm_text;
+						break;
+					case 'nl':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+omkoping+OR+fraude+OR+%22geld+witwassen%22+OR+misdrijf+OR+terrorisme+OR+corruptie+OR+criminaliteit` + sm_text
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+omkoping+OR+fraude+OR+%22geld+witwassen%22+OR+misdrijf+OR+terrorisme+OR+corruptie+OR+criminaliteit` + sm_text
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+omkoping+OR+fraude+OR+%22geld+witwassen%22+OR+misdrijf+OR+terrorisme+OR+corruptie+OR+criminaliteit` + sm_text
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+omkoping+OR+fraude+OR+%22geld+witwassen%22+OR+misdrijf+OR+terrorisme+OR+corruptie+OR+criminaliteit` + sm_text;
+						break;
+					case 'pt':
+						tab = (midname === '' && surname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)}%22+bola+OR+propina+OR+estelionato+OR+trapa%C3%A7a+OR+golpe+OR+fraude+OR+%22lavagem+de+dinheiro%22+OR+%22branqueamento+de+capitais%22+OR+%22pir%C3%A2mide+financeira%22+OR+crime+OR+terrorismo+OR+corrup%C3%A7%C3%A3o` + sm_text
+						: (midname === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+bola+OR+propina+OR+estelionato+OR+trapa%C3%A7a+OR+golpe+OR+fraude+OR+%22lavagem+de+dinheiro%22+OR+%22branqueamento+de+capitais%22+OR+%22pir%C3%A2mide+financeira%22+OR+crime+OR+terrorismo+OR+corrup%C3%A7%C3%A3o` + sm_text
+						: (name === '') ? `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bola+OR+propina+OR+estelionato+OR+trapa%C3%A7a+OR+golpe+OR+fraude+OR+%22lavagem+de+dinheiro%22+OR+%22branqueamento+de+capitais%22+OR+%22pir%C3%A2mide+financeira%22+OR+crime+OR+terrorismo+OR+corrup%C3%A7%C3%A3o` + sm_text
+						: `https://www.google.`+tld+`/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bola+OR+propina+OR+estelionato+OR+trapa%C3%A7a+OR+golpe+OR+fraude+OR+%22lavagem+de+dinheiro%22+OR+%22branqueamento+de+capitais%22+OR+%22pir%C3%A2mide+financeira%22+OR+crime+OR+terrorismo+OR+corrup%C3%A7%C3%A3o` + sm_text;
+						break;
+				}
+				// console.log(tab)
+				return tab
+			}
+			
+			
+			
+			function openTabsNN1(lang, name, midname, surname)
+			{
+				var languages = [];
+				let languagesHTML = document.querySelectorAll('.languages input');
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+
+				var tlds = document.querySelector('input[name="tld-option"]:checked').value;
+				console.log ("TLD IS:"+tlds);
+				var langs = document.querySelector('input[name="options"]:checked').value;
+				console.log(`LANG IS: ${languages}`);
+				if(languages.includes("pt"))
+					{
+						console.log(`PT LANG DETECTED`);
+						tlds = 'com.br';
+					}
+
+				let tab = '';
+				// The following 5 social media sites will be excluded from search results: facebook, twitter, instagram, linkedin, reddit
+				let sm_text_en = '+-site:facebook.*+-site:twitter.*+-site:instagram.*+-site:linkedin.*+-site:reddit.*';
+				let sm_text = '%2B-site:facebook.*%2B-site:twitter.*%2B-site:instagram.*%2B-site:linkedin.*%2B-site:reddit.*';
+
+				switch (lang) {
+					case 'en':
+						tab = (midname === '' && surname === '') ? `https://www.google.ie/search?q=%22${encodeURIComponent(name)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text_en + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (midname === '') ? `https://www.google.ie/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text_en + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: (name === '') ? `https://www.google.ie/search?q=%22${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text_en + `&ie=utf-8&oe=utf-8&gws_rd=cr`
+						: `https://www.google.ie/search?q=%22${encodeURIComponent(name)} ${encodeURIComponent(midname)} ${encodeURIComponent(surname)}%22+bribery+OR+fraud+OR+%22money+laundering%22+OR+crime+OR+terrorism+OR+corruption` + sm_text_en + `&ie=utf-8&oe=utf-8&gws_rd=cr`;
+						break;
+					case 'fr':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=fr&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=fr&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=fr&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=fr&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text;
+						break;
+					case 'de':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=de&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=de&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=de&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=de&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text;
+						break;
+					case 'es':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=es&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=es&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=es&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=es&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text;
+						break;
+					case 'pl':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=pl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522{encodeURIComponent(name)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=pl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=pl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=pl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text;
+						break;
+					case 'it':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=it&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=it&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=it&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=it&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text;
+						break;
+					case 'se':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=sv&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=sv&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=sv&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=sv&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text;
+						break;
+					case 'nl':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text;
+						break;
+					case 'pt':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=pt&tl=en&u=https%3A%2F%2Fwww.google.`+tlds+`%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=pt&tl=en&u=https%3A%2F%2Fwww.google.`+tlds+`%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=pt&tl=en&u=https%3A%2F%2Fwww.google.`+tlds+`%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=pt&tl=en&u=https%3A%2F%2Fwww.google.`+tlds+`%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text;
+						break;
+				}
+				// Below ensures no space charaters are in the URLs
+				if (lang !== 'en'){
+					tab = tab.replace(/%20/g, "%2520");
+					tab = tab.replace(/ /g, "%2520");
+				}
+				// console.log(tab)
+				return tab
+			}
+			
+			
+		function openTabsNN2(lang, name, midname, surname)
+			{
+
+			
+				let tab = '';
+				// The following 5 social media sites will be excluded from search results: facebook, twitter, instagram, linkedin, reddit
+				let sm_text_en = '+-site:facebook.*+-site:twitter.*+-site:instagram.*+-site:linkedin.*+-site:reddit.*';
+				let sm_text = '%2B-site:facebook.*%2B-site:twitter.*%2B-site:instagram.*%2B-site:linkedin.*%2B-site:reddit.*';
+				switch (lang) {
+					case 'en':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bbribery%2BOR%2Bfraud%2BOR%2B%2522money%2Blaundering%2522%2BOR%2Bcrime%2BOR%2Bterrorism%2BOR%2Bcorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bbribery%2BOR%2Bfraud%2BOR%2B%2522money%2Blaundering%2522%2BOR%2Bcrime%2BOR%2Bterrorism%2BOR%2Bcorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbribery%2BOR%2Bfraud%2BOR%2B%2522money%2Blaundering%2522%2BOR%2Bcrime%2BOR%2Bterrorism%2BOR%2Bcorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbribery%2BOR%2Bfraud%2BOR%2B%2522money%2Blaundering%2522%2BOR%2Bcrime%2BOR%2Bterrorism%2BOR%2Bcorruption` + sm_text;
+						break;
+					case 'fr':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bpot-de-vin%2BOR%2Bfraude%2BOR%2B%2522blanchiment%2522%2BOR%2Bcrime%2BOR%2Bterrorisme%2BOR%2Bcorruption` + sm_text;
+						break;
+					case 'de':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2BBestechung%2BOR%2Bbetrug%2BOR%2B%2522Geldw%25C3%25A4sche%2522%2BOR%2BKriminalit%25C3%25A4t%2BOR%2BTerrorismus%2BOR%2BKorruption` + sm_text;
+						break;
+					case 'es':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bsoborno%2BOR%2Bfraude%2BOR%2B%2522lavado%2Bde%2Bdinero%2522%2BOR%2Bcrimen%2BOR%2Bterrorismo%2BOR%2Bcorrupci%25C3%25B3n` + sm_text;
+						break;
+					case 'pl':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522{encodeURIComponent(name)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bprzekupstwo%2BOR%2Boszustwo%2BOR%2B%2522pranie%2Bpieni%25C4%2599dzy%2522%2BOR%2Bprzest%25C4%2599pstwo%2BOR%2Bterroryzm%2BOR%2Bkorupcja` + sm_text;
+						break;
+					case 'it':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bcorruzione%2BOR%2Bfrode%2BOR%2B%2522riciclaggio%2522%2BOR%2Bcrimine%2BOR%2Bterrorismo%2BOR%2Btangenti` + sm_text;
+						break;
+					case 'se':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname)}%2522%2Bbestickning%2BOR%2Bbedr%25C3%25A4geri%2BOR%2Bpengatv%25C3%25A4tt%2BOR%2Bbrottslighet%2BOR%2Bterrorism%2BOR%2Bkorruption` + sm_text;
+						break;
+					case 'nl':
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=nl&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bomkoping%2BOR%2Bfraude%2BOR%2B%2522geld%2Bwitwassen%2522%2BOR%2Bmisdrijf%2BOR%2Bterrorisme%2BOR%2Bcorruptie%2BOR%2Bcriminaliteit` + sm_text;
+						break;
+					case 'pt': // 
+						tab = (midname === '' && surname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: (midname === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: (name === '') ? `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(midname)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text
+						: `https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=https%3A%2F%2Fwww.google.ie%2Fsearch%3Fq%3D%2522${encodeURIComponent(name)}%2520${encodeURIComponent(midname)}%2520${encodeURIComponent(surname.replace(" ", "+"))}%2522%2Bbola%2BOR%2Bpropina%2BOR%2Bestelionato%2BOR%2Btrapa%C3%A7a%2BOR%2Bgolpe%2BOR%2Bfraude%2BOR%2B%2522lavagem%2Bde%2Bdinheiro%2522%2BOR%2B%2522branqueamento%2Bde%2Bcapitais%2522%2BOR%2B%2522pir%C3%A2mide%2Bfinanceira%2522%2BOR%2Bcrime%2BOR%2Bterrorismo%2BOR%2Bcorrup%C3%A7%C3%A3o` + sm_text;
+						break;
+				}
+				// Below ensures no space charaters are in the URLs
+				tab = tab.replace(/%20/g, "%2520");
+				tab = tab.replace(/ /g, "%2520");
+				// console.log(tab)
+				return tab
+			}
+			
+			
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			/*---------------------- ASIN Opener - deprecated ---------------
+			function openTabsASIN(option, asin){
+				
+				let tab = '';
+				
+				switch (option) {
+					case 'asin_csi':
+						tab = `https://csi.amazon.com/view?view=simple_product_data_view&item_id=${asin}&marketplace_id=3&customer_id=&merchant_id=&sku=&fn_sku=&gcid=&fulfillment_channel_code=&listing_type=purchasable&submission_id=&order_id=&external_id=&search_string=&realm=USAmazon&stage=prod&domain_id=&keyword=&submit=Show`;
+						break;
+				}
+				
+				return tab
+			}
+			
+			END OF DEPRECATED FEATURE ----------------------*/
+			
+			// Checks the input and opens tabs
+			function checkInput(event){
+				
+				let oids_final = [];
+				let cids_final = [];
+				let options_array = [];
+				let region = '';
+				
+				const form = processedOptions(new FormData(document.getElementById('oid_cid_form')));
+				
+				// Clears and arranges inputs into separate array items
+				for (let entry of form.entries()){
+					// console.log(entry);
+					if (entry[0] === 'order_ta') {
+						oids_final = entry[1].split('\n').map(single => single.trim()).filter(order_id => order_id != '\n' && order_id != '');
+					} else if (entry[0] === 'customer_ta') {
+						cids_final = entry[1].split('\n').map(single => single.trim()).filter(customer_id => customer_id != '\n' && customer_id != '');
+					} else if (entry[0] === 'options') {
+						options_array = entry[1].split(',');
+					} else if (entry[0] === 'region') {
+						region = entry[1];
+					}
+				}
+				
+				// console.log(`Order IDs array: ${oids_final}, Customer IDs array: ${cids_final}, Options array: ${options_array}`);
+				
+				// Creates oid-cid pairs if arrays are of equal length. Tabs opened are grouped by
+				// oid triton, oid paragon, cid rccs by default.
+
+				if(options_array[0] !== ''){
+					if (oids_final.length === cids_final.length && oids_final.length !== 0){
+						for (let i = 0; i <= oids_final.length - 1; i++){
+							for (let y = 0; y <= options_array.length - 1; y++){
+								window.open(openTabs(options_array[y], oids_final[i], cids_final[i], region), '_blank');
+							}
+						}
+					}
+					else {
+						// if the arrays are not equal in length, the code simply opens
+						// them in series, broken down by option
+						if (options_array.includes('triton_oid') || options_array.includes('paragon_oid')){
+							for (let option of options_array){
+								if (option !== 'triton_cid' && option !== 'rccs_cid'){
+									for (let oid of oids_final){
+										window.open(openTabs(option, oid, '', region), '_blank');
+									}
+								}
+							}
+						} 
+						if (options_array.includes('triton_cid') || options_array.includes('rccs_cid')){
+							for (let option of options_array){
+								if (option !== 'triton_oid' && option !== 'paragon_oid'){
+									for (let cid of cids_final){
+										window.open(openTabs(option, '', cid, region), '_blank');
+									}
+								}
+							}
+						}
+					}
+				} else {
+					alert('No options');
+				}
+			}
+			
+			// Checks the input and opens tabs in regard to seller
+			function checkInputSeller(event){
+			
+				// Array containing SIDs entered by the user
+				let sids_final = [];
+				// Array containing options selected by the user
+				let options_array = [];
+				// Single variable containing the chosen entity
+				let entity;
+				let region = '';
+				
+				// Getting the form data into this form constant. The outcome is a form media query
+				// with consolidated options into an array
+				const form = processedOptions(new FormData(document.getElementById('sid_form')));
+				
+				// Clears and arranges inputs into separate array items
+				for (let entry of form.entries()){
+					console.log(entry);
+					// The form media query contains several entries, position [0] is the name given to
+					// the specific form element, position [1] is the value assigned to that element
+					if (entry[0] === 'seller_ta') {
+						// The series of methods below clear the input from unwanted characters, like "new line", "space", "tabs"
+						sids_final = entry[1].split('\n').map(single => single.trim()).filter(seller_id => seller_id != '\n' && seller_id != '');
+					} else if (entry[0] === 'entity') {
+						// If the entry is options, then separate them by comma
+						entity = entry[1];
+					} else if (entry[0] === 'options') {
+						// If the entry is options, then separate them by comma
+						options_array = entry[1].split(',');
+					} else if (entry[0] === 'region') {
+						region = entry[1];
+					}
+				}
+				
+				// console.log(`Seller IDs array: ${sids_final}, Options array: ${options_array}, Entity: ${entity}`);
+				
+				// Creates tabs opened are grouped by seller-option
+				if (sids_final.length !== 0 && options_array[0] !== ''){
+					for (let sid of sids_final){
+						for (let option of options_array){
+							if (option !== 'paragon_sid'){
+								window.open(openTabs(option, sid, entity, region), '_blank');
+							} else if (entity !== 'ape'){
+								window.open(openTabs(option, sid, entity, region), '_blank');
+							} else {
+								window.open(openTabs(option, sid, 'A1PA6795UKMFR9', region), '_blank');
+								window.open(openTabs(option, sid, 'A13V1IB3VIYZZH', region), '_blank');
+								window.open(openTabs(option, sid, 'APJ6JRA9NG5V4', region), '_blank');
+								window.open(openTabs(option, sid, 'A1RKKUPIHCS9HS', region), '_blank');
+								window.open(openTabs(option, sid, 'A1805IZSGTT6HS', region), '_blank');
+								window.open(openTabs(option, sid, 'A1C3SOZRARQ6R3', region), '_blank');
+								window.open(openTabs(option, sid, 'A2NODRKZP88ZB9', region), '_blank');
+								window.open(openTabs(option, sid, 'AMEN7PMS3EDWL', region), '_blank');							
+							}
+						}
+					}
+				} else {
+				
+					alert("No input or options");
+				
+				}
+			}
+			
+			// Checks the input and open tabs in regard to ASIN
+			function checkInputASIN(event){
+				
+				let asin_final = [];
+				let options_array = [];
+				let entity;
+				
+				const form = processedOptions(new FormData(document.getElementById('asin_form')));
+				
+				// Clears and arranges inputs into separate array items
+				for (let entry of form.entries()){
+					// console.log(entry);
+					if (entry[0] === 'asin_ta') {
+						asin_final = entry[1].split('\n').map(single => single.trim()).filter(asin => asin != '\n' && asin != '');
+					} else if (entry[0] === 'entity') {
+						// If the entry is options, then separate them by comma
+						entity = entry[1];
+					} else if (entry[0] === 'options') {
+						options_array = entry[1].split(',');
+					}
+				}
+				
+				// console.log(`ASIN IDs array: ${asin_final}, Options array: ${options_array}, Chosen entity: ${entity}`);
+				
+				// Creates tabs opened are grouped by ASIN-option
+				// console.log(`Options array length: ${options_array.length}, Content: ------${options_array}------ `);
+				if (asin_final.length !== 0 && options_array[0] !== ''){
+					for (let asin of asin_final){
+						for (let option of options_array){
+							if (entity != 'ape'){
+								window.open(openTabs(option, asin, entity), '_blank');
+							} else {
+								window.open(openTabs(option, asin, '4'), '_blank');
+								window.open(openTabs(option, asin, '5'), '_blank');
+								window.open(openTabs(option, asin, '35691'), '_blank');
+								window.open(openTabs(option, asin, '44551'), '_blank');
+								window.open(openTabs(option, asin, '328451'), '_blank');
+								window.open(openTabs(option, asin, '712115121'), '_blank');
+								window.open(openTabs(option, asin, '704403121'), '_blank');
+								window.open(openTabs(option, asin, '679831071'), '_blank');							
+							}
+							
+						}
+					}
+				} else {
+					alert("No input or options");
+				}
+			}
+			
+			/* --------------------- Negative News --------------------- */
+			// Perform NN tabs opening for the POC, BO, and legrep
+			function searchIndividual(event){
+				
+				let name = '';
+				let midname = '';
+				let surname = '';
+				let languages = [];
+				
+				switch (event.target.id){
+					case 'search_multiple_surnames':
+						var form = new FormData(document.getElementById('specialSc'));
+						break;
+					case 'search_multiple_surnames_t':
+						var form = new FormData(document.getElementById('specialSc'));
+						break;
+				}
+				
+				// Clears and arranges inputs into separate items
+				for (let entry of form.entries()){
+					console.log(entry);
+					if (entry[0] === 'name' && entry[1] !== '') {
+						name = entry[1].trim();
+					} else if (entry[0] === 'midname' && entry[1] !== '') {
+						midname = entry[1].trim();
+					} else if (entry[0] === 'surname' && entry[1] !== '') {
+						surname = entry[1].trim();
+					}
+				}
+				
+				// Gets lang preferences into the array
+				let languagesHTML = document.querySelectorAll('.languages input');
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+				
+				
+				// console.log(`Name: ${name}, Middle Name: ${midname}, Surname: ${surname}, Options array: ${languages}`);
+				
+				// CLASS Refactoring START
+				//let individual = new NegativeNewsEntity(name, midname, surname, languages);
+				//individual.openingInstances();
+				// CLASS Refactoring END
+				if (event.target.id === 'search_multiple_surnames') {
+					let individual = new NegativeNewsEntity(name, midname, surname, languages);
+					individual.openingInstances(); 
+				} else if (event.target.id === 'search_multiple_surnames_t'){
+					let individual = new NegativeNewsEntity(name, midname, surname, languages);
+					if( document.getElementById("langdetect").checked ){
+						individual.openingInstances2();
+					} else {
+						individual.openingInstances1();
+					}
+				} 
+			}
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			/* --------------------- Negative News --------------------- */
+			// Perform NN tabs opening for the SUs, FI, and biz
+			function searchSeriesOfEntities(event){
+				
+				let entitiesArray = [];
+				let languages = [];
+				
+				switch (event.target.id){
+					case 'search_sus':
+						var form = new FormData(document.getElementById('sus_form'));
+						break;
+					case 'search_susa':
+						var form = new FormData(document.getElementById('sus_form'));
+						break;
+					case 'search_fi':
+						var form = new FormData(document.getElementById('fi_form'));
+						break;
+					case 'search_fia':
+						var form = new FormData(document.getElementById('fi_form'));
+						break;
+				}
+				
+				// Clears and arranges inputs into separate items
+				for (let entry of form.entries()){
+					if (entry[0] === 'sus_names' && entry[1] !== '') {
+						entitiesArray = entry[1].split('\n').map(single => single.trim()).filter(entity => entity != '\n' && entity != '');
+					} else if (entry[0] === 'fi_names' && entry[1] !== '') {
+						entitiesArray = entry[1].split('\n').map(single => single.trim()).filter(entity => entity != '\n' && entity != '');
+					} else if (entry[0] === 'biz_name' && entry[1] !== '') {
+						entitiesArray = entry[1].trim();
+					} else {
+						alert('No input');
+					}
+				}
+				
+				// Gets lang preferences into the array
+				let languagesHTML = document.querySelectorAll('.languages input');
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+				
+				if (entitiesArray !== [] && event.target.id === 'search_fi') {
+					
+					for (let entity of entitiesArray) {				
+						let fiEntity = new NegativeNewsEntity(entity, 'fi', '', languages);
+						fiEntity.openingInstances();
+					} 
+				} else if (entitiesArray !== [] && event.target.id === 'search_fia'){
+					
+					for (let entity of entitiesArray) {				
+						let fiEntity = new NegativeNewsEntity(entity, 'fi', '', languages);
+						if( document.getElementById("langdetect").checked ) {
+							fiEntity.openingInstances2();
+						} else {
+							fiEntity.openingInstances1();
+						}
+					} 
+				} else if (entitiesArray !== [] && event.target.id === 'search_sus'){
+					
+					for (let entity of entitiesArray) {
+						console.log('You clicked the Basic Search button!');						
+						console.log('Entity: ' + entity);
+						
+						let suSingleNamesArray = entity.split(' ');
+						let surname = suSingleNamesArray[suSingleNamesArray.length - 1];
+						let forename = suSingleNamesArray[0];
+						let midname = [];
+						
+						if (suSingleNamesArray.length >= 2){
+							
+							for (let i = 1; i < suSingleNamesArray.length - 1 && suSingleNamesArray.length > 2; i++){
+								midname.push(suSingleNamesArray[i]);
+							}
+							
+							// console.log(`Variables passed into the object. Lunghezza del nome completo: ${suSingleNamesArray.length}, Nome: ${forename}, secondi nomi: ${midname.join(' ')}, cognome: ${surname}`);
+							let suEntity = (suSingleNamesArray.length > 2) ? new NegativeNewsEntity(forename, midname.join(' '), surname, languages)
+							: new NegativeNewsEntity(forename, '', surname, languages);
+							// console.log('Prima del metodo: ', suEntity.name, suEntity.midname, suEntity.surname);
+							suEntity.openingInstances();
+							// console.log('Dopo il metodo: ', suEntity.name, suEntity.midname, suEntity.surname);
+						} else {
+							alert('Missing input');
+						}
+						console.log(`Name: ${name}, Middle Name: ${midname}, Surname: ${surname}, Options array: ${languages}`);
+					} 
+				}
+				
+				else if (entitiesArray !== [] && event.target.id === 'search_susa'){
+					
+					for (let entity of entitiesArray) {
+						console.log('You clicked the Translate Search button!');
+						console.log('Entity: ' + entity);
+						
+						let suSingleNamesArray = entity.split(' ');
+						let surname = suSingleNamesArray[suSingleNamesArray.length - 1];
+						let forename = suSingleNamesArray[0];
+						let midname = [];
+						
+						if (suSingleNamesArray.length >= 2){
+							
+							for (let i = 1; i < suSingleNamesArray.length - 1 && suSingleNamesArray.length > 2; i++){
+								midname.push(suSingleNamesArray[i]);
+							}
+							
+							// console.log(`Variables passed into the object. Lunghezza del nome completo: ${suSingleNamesArray.length}, Nome: ${forename}, secondi nomi: ${midname.join(' ')}, cognome: ${surname}`);
+							let suEntity = (suSingleNamesArray.length > 2) ? new NegativeNewsEntity(forename, midname.join(' '), surname, languages)
+							: new NegativeNewsEntity(forename, '', surname, languages);
+							// console.log('Prima del metodo: ', suEntity.name, suEntity.midname, suEntity.surname);
+							if( document.getElementById("langdetect").checked ) {
+								suEntity.openingInstances2();
+							} else {
+								suEntity.openingInstances1();
+							}
+							// console.log('Dopo il metodo: ', suEntity.name, suEntity.midname, suEntity.surname);
+						} else {
+							alert('Error : Missing Input - Last Name');
+						}
+						console.log(`Name: ${forename}, Middle Name: ${midname}, Surname: ${surname}, Options array: ${languages}`);
+					} 
+				}
+			}
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			/* --------------------- Negative News --------------------- */
+			function cnSwap(event){
+				
+				let name = '';
+				let surname = '';
+				let languages = [];
+				
+				switch (event.target.id){
+					case 'search_CN_swap':
+						var form = new FormData(document.getElementById('specialScCN'));
+						break;
+					case 'search_CN_swap_t':
+						var form = new FormData(document.getElementById('specialScCN'));
+						break;
+				}
+				
+				// Clears and arranges inputs into separate items
+				for (let entry of form.entries()){
+					// console.log(entry);
+					if (entry[0] === 'name' && entry[1] !== '') {
+						name = entry[1].trim();
+					} else if (entry[0] === 'surname' && entry[1] !== '') {
+						surname = entry[1].trim();
+					}
+				}
+				
+				// Gets lang preferences into the array
+				let languagesHTML = document.querySelectorAll('.languages input');
+				
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+				
+				// console.log(`Name: ${name}, Surname: ${surname}, Options array: ${languages}`);
+				
+				// CLASS Refactoring START
+				if (event.target.id === 'search_CN_swap'){
+					let individual = new NegativeNewsEntity(name, '', surname, languages);
+					individual.cn_swap();
+				} else if (event.target.id === 'search_CN_swap_t'){
+					let individual = new NegativeNewsEntity(name, '', surname, languages);
+					individual.cn_swap_t();
+				}
+				// CLASS Refactoring END
+			}
+			
+			/* --------------------- END OF NN FEATURE ----------------- */
+			
+			function esSurnames(event){
+			
+				const person = {
+					name: '',
+					midname: '',
+					fstapellido: '',
+					sndapellido: '',
+					surname: function() {
+						if(this.fstapellido !== '' && this.sndapellido !== ''){
+							return this.fstapellido + " " + this.sndapellido;
+						} else if (this.fstapellido !== '') {
+							return this.fstapellido;
+						} else if (this.sndapellido !== '') {
+							return this.sndapellido;
+						} else {
+							return '';
+						}
+					}
+				}
+				let languages = [];
+				
+				// var form = new FormData(document.getElementById('specialScES'));
+				
+				switch (event.target.id){
+					case 'search_ES_apellidos':
+						var form = new FormData(document.getElementById('specialScES'));
+						break;
+					case 'search_ES_apellidos_t':
+						var form = new FormData(document.getElementById('specialScES'));
+						break;
+				}
+				
+				
+				// Clears and arranges inputs into separate items
+				for (let entry of form.entries()){
+					// console.log(entry);
+					if (entry[0] === 'name' && entry[1] !== '') {
+						person.name = entry[1].trim();
+					} else if (entry[0] === 'midname' && entry[1] !== '') {
+						person.midname = entry[1].trim();
+					} else if (entry[0] === 'surname1' && entry[1] !== '') {
+						person.fstapellido = entry[1].trim();
+					} else if (entry[0] === 'surname2' && entry[1] !== '') {
+						person.sndapellido = entry[1].trim();
+					}
+				}
+				
+				// Gets lang preferences into the array
+				let languagesHTML = document.querySelectorAll('.languages input');
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+				
+				//console.log(`Name: ${person.name}, Middle Name: ${person.midname}, Surname: ${person.surname()}, Options array: ${languages}`);
+				
+				// CLASS Refactoring START
+				if (event.target.id === 'search_ES_apellidos'){
+					console.log("Opening basic");
+					if (person.fstapellido !== '' && person.sndapellido !== ''){
+						let individual = new NegativeNewsEntity(person.name, person.midname, person.surname(), languages);
+						individual.openingInstancesES();
+						//let individual1 = new NegativeNewsEntity(person.name,  person.surname(), languages);
+						//individual1.openingInstances();
+						let individualFstApellido = new NegativeNewsEntity(person.name, person.midname, person.fstapellido, languages);
+						individualFstApellido.openingInstancesES();
+					} else if (person.fstapellido !== '' && person.sndapellido === ''){
+						alert("Missing apellido. Please, fill both apellidos fields, or use the NPs form above.");
+					} else if (person.sndapellido !== '' && person.fstapellido === ''){
+						alert("Missing apellido. Please, fill both apellidos fields, or use the NPs form above.");
+					} else {
+						alert("Missing both apellidos");
+					}
+				} else if (event.target.id === 'search_ES_apellidos_t'){
+					console.log("Opening translated");
+					if (person.fstapellido !== '' && person.sndapellido !== ''){
+						let individual = new NegativeNewsEntity(person.name, person.midname, person.surname(), languages);
+						individual.openingInstancesES_t();
+						//let individual1 = new NegativeNewsEntity(person.name,  person.surname(), languages);
+						//individual1.openingInstances();
+						let individualFstApellido = new NegativeNewsEntity(person.name, person.midname, person.fstapellido, languages);
+						individualFstApellido.openingInstancesES_t();
+					} else if (person.fstapellido !== '' && person.sndapellido === ''){
+						alert("Missing apellido. Please, fill both apellidos fields, or use the NPs form above.");
+					} else if (person.sndapellido !== '' && person.fstapellido === ''){
+						alert("Missing apellido. Please, fill both apellidos fields, or use the NPs form above.");
+					} else {
+						alert("Missing both apellidos");
+					}
+				}
+				// CLASS Refactoring END
+			}
+			
+			function ptSurnames(event){
+			
+				const ptperson = {
+					name: '',
+					midname: '',
+					fstsobrenome: '',
+					sndsobrenome: '',
+					surname: function() {
+						if(this.fstsobrenome !== '' && this.sndsobrenome !== ''){
+							return this.fstsobrenome + " " + this.sndsobrenome;
+						} else if (this.fstsobrenome !== '') {
+							return this.fstsobrenome;
+						} else if (this.sndsobrenome !== '') {
+							return this.sndsobrenome;
+						} else {
+							return '';
+						}
+					}
+				}
+				let languages = [];
+				
+				switch (event.target.id){
+					case 'search_PT_sobrenomes':
+						var form = new FormData(document.getElementById('specialScPT'));
+						break;
+					case 'search_PT_sobrenomes_t':
+						var form = new FormData(document.getElementById('specialScPT'));
+						break;
+				}
+				//var form = new FormData(document.getElementById('specialScPT'));
+				
+				// Clears and arranges inputs into separate items
+				for (let entry of form.entries()){
+					// console.log(entry);
+					if (entry[0] === 'name' && entry[1] !== '') {
+						ptperson.name = entry[1].trim();
+					} else if (entry[0] === 'midname' && entry[1] !== '') {
+						ptperson.midname = entry[1].trim();
+					} else if (entry[0] === 'ptsurname1' && entry[1] !== '') {
+						ptperson.fstsobrenome = entry[1].trim();
+					} else if (entry[0] === 'ptsurname2' && entry[1] !== '') {
+						ptperson.sndsobrenome = entry[1].trim();
+					}
+				}
+				
+				// Gets lang preferences into the array
+				let languagesHTML = document.querySelectorAll('.languages input');
+				for (let preference of languagesHTML){
+					if (preference.checked){
+						languages.push(preference.id);
+					}
+				}
+				
+				// console.log(`Name: ${ptperson.name}, Middle Name: ${ptperson.midname}, Surname: ${ptperson.surname()}, Options array: ${languages}`);
+				
+				// CLASS Refactoring START
+				if (event.target.id === 'search_PT_sobrenomes'){
+					// console.log("Entering search_PT_sobrenomes");
+					if (ptperson.fstsobrenome !== '' && ptperson.sndsobrenome !== ''){
+						//let individual = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.surname(), languages);
+						//individual.openingInstancesPT(); // ABCD and ACD
+						let individualFullName = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.surname(), languages);
+						individualFullName.openingInstances(); // ABCD
+						// console.log("Searching ABCD");
+						let individualSndSobrenome = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.sndsobrenome, languages);
+						individualSndSobrenome.openingInstancesPT(); // ABD and AD
+						// console.log("Searching ABD and AD");
+						//let individualFstSobrenome = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.fstsobrenome, languages);
+						//individualFstSobrenome.openingInstances(); // ABC
+					} else if (ptperson.fstsobrenome !== '' && ptperson.sndsobrenome === ''){
+						alert("Missing sobrenome. Please, fill both sobrenomes fields, or use the NPs form above.");
+					} else if (ptperson.sndapellido !== '' && ptperson.fstapellido === ''){
+						alert("Missing sobrenome. Please, fill both sobrenomes fields, or use the NPs form above.");
+					} else {
+						alert("Missing both sobrenomes");
+					}
+				} else if (event.target.id === 'search_PT_sobrenomes_t') {
+					// console.log("Entering search_PT_sobrenomes_t");
+					if (ptperson.fstsobrenome !== '' && ptperson.sndsobrenome !== ''){
+						//let individual = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.surname(), languages);
+						//individual.openingInstancesPT(); // ABCD and ACD
+						let individualFullName = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.surname(), languages);
+						if( document.getElementById("langdetect").checked ){
+							individualFullName.openingInstances2(); // ABCD
+							// console.log("Searching ABCD - openingInstances2");
+						} else {
+							individualFullName.openingInstances1(); // ABCD
+							// console.log("Searching ABCD - openingInstances1");
+						}
+						// individualFullName.openingInstances(); // ABCD
+						let individualSndSobrenome = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.sndsobrenome, languages);
+						individualSndSobrenome.openingInstancesPT_t(); // ABD and AD
+						// console.log("Searching ABD and AD - openingInstancesPT_t");
+						//let individualFstSobrenome = new NegativeNewsEntity(ptperson.name, ptperson.midname, ptperson.fstsobrenome, languages);
+						//individualFstSobrenome.openingInstances(); // ABC
+					} else if (ptperson.fstsobrenome !== '' && ptperson.sndsobrenome === ''){
+						alert("Missing sobrenome. Please, fill both sobrenomes fields, or use the NPs form above.");
+					} else if (ptperson.sndapellido !== '' && ptperson.fstapellido === ''){
+						alert("Missing sobrenome. Please, fill both sobrenomes fields, or use the NPs form above.");
+					} else {
+						alert("Missing both sobrenomes");
+					}
+				}
+				// CLASS Refactoring END
+			}
+		});
+		
+		</script>
+	</body>
+</html>
