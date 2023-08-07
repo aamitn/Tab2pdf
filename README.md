@@ -24,6 +24,14 @@ Tab2PDF is a Python application that provides a user-friendly way to save newly 
 9. Optionally, open a starting HTML file from the "File" menu to navigate to specific tabs.
 10. For more information and answers to common questions, refer to the "FAQ" section in the GUI's "Help" menu.
 
+## Commands to Run 
+- `pip install -t rquirements.txt`
+- `pyinstaller --onefile --noconsole --icon=C:\Users\amit\PycharmProjects\Tab2pdf\dist\icon.ico main.py`
+- `pyinstaller main.spec`
+Now Run
+- `python main.py ` OR -
+- `cd dist, main.exe `
+
 ## Dependencies
 
 Tab2PDF requires the following Python libraries:
